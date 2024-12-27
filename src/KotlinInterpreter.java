@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.Scanner;
 
 // Token types for lexical analysis
 enum TokenType {
@@ -596,32 +597,176 @@ class Interpreter {
 }
 
 // Main class to run the interpreter
-public class KotlinInterpreter {
-    public static void main(String[] args) {
-        // Example program: Calculate factorial of 5
-        String source = """
-            var n = 5;
-            var result = 1;
-            while (n > 0) {
-                result = result * n;
-                n = n - 1;
-            }
-            print result;
-            """;
 
-        try {
-            Lexer lexer = new Lexer(source);
-            List<Token> tokens = lexer.scanTokens();
-            Parser parser = new Parser(tokens);
-            List<Parser.Stmt> statements = parser.parse();
-            Interpreter interpreter = new Interpreter();
-            interpreter.interpret(statements);
-        } catch (RuntimeException error) {
-            System.err.println(error.getMessage());
+
+
+public class KotlinInterpreter {
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\nKotlin Interpreter - Algorithm Menu");
+            System.out.println("1. Sum of First N Numbers");
+            System.out.println("2. Factorial of N");
+            System.out.println("3. GCD of Two Numbers");
+            System.out.println("4. Reverse a Number");
+            System.out.println("5. Check if a Number is Prime");
+            System.out.println("6. Check if a Number is Palindrome");
+            System.out.println("7. Find the Largest Digit in a Number");
+            System.out.println("8. Sum of Digits");
+            System.out.println("9. Multiplication Table");
+            System.out.println("10. Nth Fibonacci Number");
+            System.out.println("0. Exit");
+            System.out.print("\nEnter your choice (0-10): ");
+
+            int choice = scanner.nextInt();
+            if (choice == 0) {
+                break;
+            }
+
+            System.out.print("Enter input number: ");
+            int input = scanner.nextInt();
+
+            String program = switch (choice) {
+                case 1 -> String.format("""
+                    var n = %d;
+                    var sum = 0;
+                    var i = 1;
+                    while (i <= n) {
+                        sum = sum + i;
+                        i = i + 1;
+                    }
+                    print sum;
+                    """, input);
+
+                case 2 -> String.format("""
+                    var n = %d;
+                    var result = 1;
+                    while (n > 0) {
+                        result = result * n;
+                        n = n - 1;
+                    }
+                    print result;
+                    """, input);
+
+                case 3 -> {
+                    System.out.print("Enter second number: ");
+                    int b = scanner.nextInt();
+                    yield String.format("""
+                        var a = %d;
+                        var b = %d;
+                        while (b > 0) {
+                            var temp = b;
+                            b = a %% b;
+                            a = temp;
+                        }
+                        print a;
+                        """, input, b);
+                }
+
+                case 4 -> String.format("""
+                    var num = %d;
+                    var reversed = 0;
+                    while (num > 0) {
+                        var digit = num %% 10;
+                        reversed = reversed * 10 + digit;
+                        num = (num - digit) / 10;
+                    }
+                    print reversed;
+                    """, input);
+
+                case 5 -> String.format("""
+                    var n = %d;
+                    var isPrime = 1;
+                    var i = 2;
+                    while (i < n) {
+                        if ((n %% i) == 0) {
+                            isPrime = 0;
+                        }
+                        i = i + 1;
+                    }
+                    print isPrime;
+                    """, input);
+
+                case 6 -> String.format("""
+                    var num = %d;
+                    var original = num;
+                    var reversed = 0;
+                    while (num > 0) {
+                        var digit = num %% 10;
+                        reversed = reversed * 10 + digit;
+                        num = (num - digit) / 10;
+                    }
+                    print reversed == original;
+                    """, input);
+
+                case 7 -> String.format("""
+                    var num = %d;
+                    var largest = 0;
+                    while (num > 0) {
+                        var digit = num %% 10;
+                        if (digit > largest) {
+                            largest = digit;
+                        }
+                        num = (num - digit) / 10;
+                    }
+                    print largest;
+                    """, input);
+
+                case 8 -> String.format("""
+                    var num = %d;
+                    var sum = 0;
+                    while (num > 0) {
+                        var digit = num %% 10;
+                        sum = sum + digit;
+                        num = (num - digit) / 10;
+                    }
+                    print sum;
+                    """, input);
+
+                case 9 -> String.format("""
+                    var n = %d;
+                    var i = 1;
+                    while (i <= 10) {
+                        print n * i;
+                        i = i + 1;
+                    }
+                    """, input);
+
+                case 10 -> String.format("""
+                    var n = %d;
+                    var prev = 0;
+                    var current = 1;
+                    var i = 2;
+                    while (i <= n) {
+                        var next = prev + current;
+                        prev = current;
+                        current = next;
+                        i = i + 1;
+                    }
+                    print current;
+                    """, input);
+
+                default -> {
+                    System.out.println("Invalid choice!");
+                    yield null;
+                }
+            };
+
+            if (program != null) {
+                System.out.println("\nOutput:");
+                runProgram(program);
+            }
+
+            System.out.println("\nPress Enter to continue...");
+            scanner.nextLine(); // Consume the remaining newline
+            scanner.nextLine(); // Wait for Enter
         }
+
+        scanner.close();
+        System.out.println("Goodbye!");
     }
 
-    // Helper method to run a specific algorithm
     public static void runProgram(String source) {
         try {
             Lexer lexer = new Lexer(source);
@@ -631,7 +776,7 @@ public class KotlinInterpreter {
             Interpreter interpreter = new Interpreter();
             interpreter.interpret(statements);
         } catch (RuntimeException error) {
-            System.err.println(error.getMessage());
+            System.err.println("Error: " + error.getMessage());
         }
     }
 }
