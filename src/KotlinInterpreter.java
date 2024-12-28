@@ -600,6 +600,7 @@ class Interpreter {
 
 
 
+// All previous code remains the same until the main class
 public class KotlinInterpreter {
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -642,9 +643,10 @@ public class KotlinInterpreter {
                 case 2 -> String.format("""
                     var n = %d;
                     var result = 1;
-                    while (n > 0) {
-                        result = result * n;
-                        n = n - 1;
+                    var i = 1;
+                    while (i <= n) {
+                        result = result * i;
+                        i = i + 1;
                     }
                     print result;
                     """, input);
@@ -655,7 +657,7 @@ public class KotlinInterpreter {
                     yield String.format("""
                         var a = %d;
                         var b = %d;
-                        while (b > 0) {
+                        while (b != 0) {
                             var temp = b;
                             b = a %% b;
                             a = temp;
@@ -667,10 +669,11 @@ public class KotlinInterpreter {
                 case 4 -> String.format("""
                     var num = %d;
                     var reversed = 0;
-                    while (num > 0) {
-                        var digit = num %% 10;
+                    var temp = num;
+                    while (temp > 0) {
+                        var digit = temp %% 10;
                         reversed = reversed * 10 + digit;
-                        num = (num - digit) / 10;
+                        temp = (temp - digit) / 10;
                     }
                     print reversed;
                     """, input);
@@ -678,8 +681,11 @@ public class KotlinInterpreter {
                 case 5 -> String.format("""
                     var n = %d;
                     var isPrime = 1;
+                    if (n <= 1) {
+                        isPrime = 0;
+                    }
                     var i = 2;
-                    while (i < n) {
+                    while (i * i <= n) {
                         if ((n %% i) == 0) {
                             isPrime = 0;
                         }
@@ -692,23 +698,29 @@ public class KotlinInterpreter {
                     var num = %d;
                     var original = num;
                     var reversed = 0;
-                    while (num > 0) {
-                        var digit = num %% 10;
+                    var temp = num;
+                    while (temp > 0) {
+                        var digit = temp %% 10;
                         reversed = reversed * 10 + digit;
-                        num = (num - digit) / 10;
+                        temp = (temp - digit) / 10;
                     }
-                    print reversed == original;
+                    if (original == reversed) {
+                        print 1;
+                    } else {
+                        print 0;
+                    }
                     """, input);
 
                 case 7 -> String.format("""
                     var num = %d;
                     var largest = 0;
-                    while (num > 0) {
-                        var digit = num %% 10;
+                    var temp = num;
+                    while (temp > 0) {
+                        var digit = temp %% 10;
                         if (digit > largest) {
                             largest = digit;
                         }
-                        num = (num - digit) / 10;
+                        temp = (temp - digit) / 10;
                     }
                     print largest;
                     """, input);
@@ -716,10 +728,11 @@ public class KotlinInterpreter {
                 case 8 -> String.format("""
                     var num = %d;
                     var sum = 0;
-                    while (num > 0) {
-                        var digit = num %% 10;
+                    var temp = num;
+                    while (temp > 0) {
+                        var digit = temp %% 10;
                         sum = sum + digit;
-                        num = (num - digit) / 10;
+                        temp = (temp - digit) / 10;
                     }
                     print sum;
                     """, input);
@@ -728,23 +741,28 @@ public class KotlinInterpreter {
                     var n = %d;
                     var i = 1;
                     while (i <= 10) {
-                        print n * i;
+                        var result = n * i;
+                        print result;
                         i = i + 1;
                     }
                     """, input);
 
                 case 10 -> String.format("""
                     var n = %d;
-                    var prev = 0;
-                    var current = 1;
-                    var i = 2;
-                    while (i <= n) {
-                        var next = prev + current;
-                        prev = current;
-                        current = next;
-                        i = i + 1;
+                    if (n <= 1) {
+                        print n;
+                    } else {
+                        var prev = 0;
+                        var current = 1;
+                        var i = 2;
+                        while (i <= n) {
+                            var next = prev + current;
+                            prev = current;
+                            current = next;
+                            i = i + 1;
+                        }
+                        print current;
                     }
-                    print current;
                     """, input);
 
                 default -> {
