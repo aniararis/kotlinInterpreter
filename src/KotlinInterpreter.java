@@ -632,10 +632,9 @@ public class KotlinInterpreter {
                 case 1 -> String.format("""
                     var n = %d;
                     var sum = 0;
-                    var i = 1;
-                    while (i <= n) {
-                        sum = sum + i;
-                        i = i + 1;
+                    while (n > 0) {
+                        sum = sum + n;
+                        n = n - 1;
                     }
                     print sum;
                     """, input);
