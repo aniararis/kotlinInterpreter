@@ -75,4 +75,4 @@ Algorithm 9 (Multiplication Table)
 
 Algorithm 10 (Nth Fibonacci Number)
 
-These issues are recognized and will be addressed in future updates to improve reliability and accuracy.
+These issues are recognized. Unfortunately we couldn't find the issues in the code and algorithms, so the reason of these bugs are still unknown.
