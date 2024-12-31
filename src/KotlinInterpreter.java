@@ -656,7 +656,7 @@ public class KotlinInterpreter {
                     yield String.format("""
                         var a = %d;
                         var b = %d;
-                        while (b != 0) {
+                        while (b > 0) {
                             var temp = b;
                             b = a %% b;
                             a = temp;
