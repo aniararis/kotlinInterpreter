@@ -71,8 +71,6 @@ Due to the limited time available for development, some algorithms may not funct
 
 Algorithm 2 (Factorial of N)
 
-Algorithm 3 (GCD of Two Numbers)
-
 Algorithm 9 (Multiplication Table)
 
 Algorithm 10 (Nth Fibonacci Number)
