@@ -1,4 +1,3 @@
-test
 Kotlin Interpreter
 =================
 Anastasia Khevtsuriani: Team leader, contributor
