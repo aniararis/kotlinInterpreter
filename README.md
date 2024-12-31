@@ -6,7 +6,14 @@ Elene Molashvili: Contributor
 
 Lizi Zhvania: Contributor
 
+!!!
+===
+In the Kotlin Interpreter, boolean values are represented numerically:
+True is displayed as 1.
+False is displayed as 0.
+
 How the Kotlin Interpreter Was Made
+===================================
 
 The Kotlin Interpreter was developed using the following steps:
 
@@ -57,9 +64,6 @@ Interactive Menu and Algorithm Selection
 After running the Kotlin Interpreter, you will be presented with an interactive menu featuring a list of algorithms that you can execute.
 Each menu item corresponds to a specific algorithm implemented as a Kotlin-like program. The program will prompt you for input values (e.g., the number N) and then execute the algorithm, displaying the result.
 
-In the Kotlin Interpreter, boolean values are represented numerically:
-True is displayed as 1.
-False is displayed as 0.
 
 Known Issues
 ============
