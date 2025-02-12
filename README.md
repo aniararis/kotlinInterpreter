@@ -1,10 +1,6 @@
 Kotlin Interpreter
 =================
-Anastasia Khevtsuriani: Team leader, contributor
-
-Elene Molashvili: Contributor
-
-Lizi Zhvania: Contributor
+Anastasia Khevtsuriani
 
 !!!
 ===
@@ -75,4 +71,4 @@ Algorithm 9 (Multiplication Table)
 
 Algorithm 10 (Nth Fibonacci Number)
 
-These issues are recognized. Unfortunately we couldn't find the issues in the code and algorithms, so the reason of these bugs are still unknown.
+These issues are recognized.
